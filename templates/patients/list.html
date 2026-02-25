@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Patients</h2>
+<a href="{% url 'patient_create' %}" class="btn btn-success">Add Patient</a>
+
+<table class="table mt-3">
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Email</th>
+    <th>Actions</th>
+  </tr>
+  {% for p in patients %}
+  <tr>
+    <td>{{ p.first_name }} {{ p.last_name }}</td>
+    <td>{{ p.age }}</td>
+    <td>{{ p.email }}</td>
+    <td>
+      <a href="{% url 'patient_update' p.id %}" class="btn btn-warning">Edit</a>
+      <a href="{% url 'patient_delete' p.id %}" class="btn btn-danger">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
