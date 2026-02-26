@@ -1,36 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <div class="container mt-4">
-  <h2>Ajouter un patient</h2>
+  <h2>Add Patient</h2>
+
   <form method="POST">
     {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
     <div class="mb-3">
-      <label>Prénom</label>
-      <input type="text" name="first_name" class="form-control" required>
+      <label class="form-label">First name</label>
+      {{ form.first_name }}
     </div>
 
     <div class="mb-3">
-      <label>Nom</label>
-      <input type="text" name="last_name" class="form-control" required>
+      <label class="form-label">Last name</label>
+      {{ form.last_name }}
     </div>
 
     <div class="mb-3">
-      <label>Age</label>
-      <input type="number" name="age" class="form-control" required>
+      <label class="form-label">Age</label>
+      {{ form.age }}
     </div>
 
     <div class="mb-3">
-      <label>Email</label>
-      <input type="email" name="email" class="form-control">
+      <label class="form-label">Email</label>
+      {{ form.email }}
     </div>
 
     <div class="mb-3">
-      <label>Téléphone</label>
-      <input type="text" name="phone" class="form-control">
+      <label class="form-label">Phone</label>
+      {{ form.phone }}
     </div>
 
-    <button type="submit" class="btn btn-success">Enregistrer</button>
-    <a href="{% url 'patient_list' %}" class="btn btn-secondary">Annuler</a>
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'patient_list' %}" class="btn btn-secondary">Cancel</a>
+
   </form>
 </div>
+
 {% endblock %}

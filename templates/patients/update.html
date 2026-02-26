@@ -1,37 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <div class="container mt-4">
-  <h2>Modifier patient</h2>
+  <h2>Edit Patient</h2>
+
   <form method="POST">
     {% csrf_token %}
 
+    {{ form.non_field_errors }}
+
     <div class="mb-3">
-      <label>Prénom</label>
-      <input type="text" name="first_name" value="{{ patient.first_name }}" class="form-control">
+      <label class="form-label">First name</label>
+      {{ form.first_name }}
     </div>
 
     <div class="mb-3">
-      <label>Nom</label>
-      <input type="text" name="last_name" value="{{ patient.last_name }}" class="form-control">
+      <label class="form-label">Last name</label>
+      {{ form.last_name }}
     </div>
 
     <div class="mb-3">
-      <label>Age</label>
-      <input type="number" name="age" value="{{ patient.age }}" class="form-control">
+      <label class="form-label">Age</label>
+      {{ form.age }}
     </div>
 
     <div class="mb-3">
-      <label>Email</label>
-      <input type="email" name="email" value="{{ patient.email }}" class="form-control">
+      <label class="form-label">Email</label>
+      {{ form.email }}
     </div>
 
     <div class="mb-3">
-      <label>Téléphone</label>
-      <input type="text" name="phone" value="{{ patient.phone }}" class="form-control">
+      <label class="form-label">Phone</label>
+      {{ form.phone }}
     </div>
 
-    <button type="submit" class="btn btn-primary">Mettre à jour</button>
-    <a href="{% url 'patient_list' %}" class="btn btn-secondary">Retour</a>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="{% url 'patient_list' %}" class="btn btn-secondary">Back</a>
+
   </form>
 </div>
+
 {% endblock %}
