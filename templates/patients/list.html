@@ -2,6 +2,11 @@
 {% block content %}
 <h2>Patients</h2>
 <a href="{% url 'patient_create' %}" class="btn btn-success">Add Patient</a>
+<form method="GET" class="d-flex gap-2 mb-3">
+  <input class="form-control" name="q" value="{{ q }}" placeholder="Search...">
+  <button class="btn btn-outline-primary">Search</button>
+  <a class="btn btn-outline-secondary" href="{% url 'patient_list' %}">Reset</a>
+</form>
 
 <table class="table mt-3">
   <tr>

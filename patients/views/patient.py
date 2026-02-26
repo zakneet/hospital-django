@@ -3,11 +3,23 @@ from django.contrib.auth.decorators import login_required
 from patients.models import Patient
 from django.contrib import messages
 from patients.forms import PatientForm
+from django.db.models import Q
 
 @login_required
 def patient_list(request):
-    patients = Patient.objects.all().order_by('-created_at')
-    return render(request, 'patients/list.html', {'patients': patients})
+    q = request.GET.get("q", "").strip()
+    patients = Patient.objects.all()
+
+    if q:
+        patients = patients.filter(
+            Q(first_name__icontains=q) |
+            Q(last_name__icontains=q) |
+            Q(email__icontains=q) |
+            Q(phone__icontains=q)
+        )
+
+    patients = patients.order_by("-created_at")
+    return render(request, "patients/list.html", {"patients": patients, "q": q})
 
 @login_required
 def patient_create(request):
