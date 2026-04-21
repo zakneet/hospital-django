@@ -1,10 +1,31 @@
-<form method="POST" class="container mt-5 col-md-4">
-    {% csrf_token %}
-    <h3>Login</h3>
+{% extends 'base.html' %}
 
-    <input type="text" name="username" class="form-control mb-2" placeholder="Username">
+{% block title %}Login | Hospital{% endblock %}
 
-    <input type="password" name="password" class="form-control mb-2" placeholder="Password">
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-5">
+        <div class="glass-card p-4 p-md-5">
+            <div class="section-head mb-3">
+                <h2>Connexion</h2>
+            </div>
+            <p class="text-secondary mb-4">Accede au tableau de bord de gestion des patients.</p>
 
-    <button class="btn btn-primary">Login</button>
-</form>
+            <form method="POST" class="d-grid gap-3">
+                {% csrf_token %}
+                <div>
+                    <label for="username" class="form-label">Nom d'utilisateur</label>
+                    <input id="username" type="text" name="username" class="form-control" placeholder="Ex: admin" required>
+                </div>
+
+                <div>
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <input id="password" type="password" name="password" class="form-control" placeholder="Votre mot de passe" required>
+                </div>
+
+                <button class="btn btn-primary w-100">Se connecter</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

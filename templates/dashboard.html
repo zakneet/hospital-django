@@ -1,14 +1,27 @@
 {% extends 'base.html' %}
 
+{% block title %}Dashboard | Hospital{% endblock %}
+
 {% block content %}
-<div class="card">
-    <div class="card-body">
-        <h3>Total Patients</h3>
-        <h1>{{ total_patients }}</h1>
+<div class="glass-card p-4 p-md-5">
+    <div class="section-head">
+        <h1>Dashboard</h1>
+        <a href="{% url 'patient_list' %}" class="btn btn-accent">Voir les patients</a>
+    </div>
+
+    <div class="row g-3 mt-1">
+        <div class="col-12 col-md-6">
+            <div class="p-4 rounded-4" style="background:#e6f4f1; border:1px solid #cce5e0;">
+                <p class="text-secondary mb-1">Total Patients</p>
+                <h2 class="mb-0" style="font-family:'Space Grotesk', sans-serif;">{{ total_patients }}</h2>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="p-4 rounded-4" style="background:#fff1e3; border:1px solid #f6d8b8;">
+                <p class="text-secondary mb-1">Action rapide</p>
+                <a href="{% url 'patient_create' %}" class="btn btn-primary btn-sm">Ajouter un patient</a>
+            </div>
+        </div>
     </div>
 </div>
-
-<a href="{% url 'patient_list' %}" class="btn btn-primary mt-3">
-    Manage Patients
-</a>
 {% endblock %}
